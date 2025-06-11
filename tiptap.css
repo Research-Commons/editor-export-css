@@ -1,0 +1,533 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+:root {
+  /* Color System */
+  --editor-text-default: hsl(240 10% 3.9%);
+  --editor-text-gray: hsl(240 3.8% 46.1%);
+  --editor-text-brown: hsl(25 95% 53%);
+  --editor-text-orange: hsl(24 95% 53%);
+  --editor-text-yellow: hsl(48 96% 53%);
+  --editor-text-green: hsl(142 71% 45%);
+  --editor-text-blue: hsl(221 83% 53%);
+  --editor-text-purple: hsl(269 97% 85%);
+  --editor-text-pink: hsl(336 80% 58%);
+  --editor-text-red: hsl(0 84% 60%);
+
+  /* Background Colors */
+  --editor-bg-default: hsl(0 0% 100%);
+  --editor-bg-subtle: hsl(0 0% 98%);
+  --editor-bg-muted: hsl(240 5% 96%);
+
+  /* Highlight Colors */
+  --editor-highlight-default: hsl(0 0% 98%);
+  --editor-highlight-gray: var(--gray-300);
+  --editor-highlight-brown: var(--amber-700);
+  --editor-highlight-orange: var(--orange-500);
+  --editor-highlight-yellow: var(--yellow-300);
+  --editor-highlight-green: var(--green-500);
+  --editor-highlight-blue: var(--brand-500);
+  --editor-highlight-purple: var(--purple-500);
+  --editor-highlight-pink: var(--pink-500);
+  --editor-highlight-red: var(--red-600);
+
+  /* Border Colors */
+  --editor-border-default: hsl(240 5% 88%);
+  --editor-border-strong: hsl(240 5% 65%);
+
+  /* Spacing System */
+  --editor-spacing-1: 0.25rem;
+  --editor-spacing-2: 0.5rem;
+  --editor-spacing-3: 0.75rem;
+  --editor-spacing-4: 1rem;
+  --editor-spacing-6: 1.5rem;
+  --editor-spacing-8: 2rem;
+  --editor-spacing-12: 3rem;
+  --editor-spacing-16: 4rem;
+
+  /* Typography */
+  --editor-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --editor-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+  --editor-font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --editor-font-manrope: "Manrope", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Animation - limit to essential transitions */
+  --editor-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --editor-transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --editor-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --editor-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --editor-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --editor-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  --gray-5: hsl(240 5% 26%);
+  --gray-2: hsl(240 3.7% 15.9%);
+  --gray-1: hsl(240 5% 96%);
+  --gray-0: hsl(0 0% 100%);
+  --black: hsl(0 0% 0%);
+  --white: hsl(0 0% 100%);
+  --purple: hsl(269 97% 85%);
+  --red: hsl(0 84% 60%);
+  --orange: hsl(33 100% 96%);
+  --yellow: hsl(54 100% 96%);
+  --green: hsl(142 71% 45%);
+  --blue: hsl(221 83% 53%);
+  --pink: hsl(336 80% 58%);
+
+  --hover-level-1: 240 4.8% 95.9%;
+  --hover-level-2: 240 5.9% 90%;
+}
+
+/* Dark Mode Custom Properties */
+.dark {
+  --editor-text-default: hsl(0 0% 98%);
+  --editor-text-gray: hsl(240 5% 64.9%);
+  --editor-bg-default: hsl(240 10% 3.9%);
+  --editor-bg-subtle: hsl(240 3.7% 15.9%);
+  --editor-bg-muted: hsl(240 5% 26%);
+  --editor-border-default: hsl(240 5% 26%);
+  --editor-border-strong: hsl(240 5% 64.9%);
+  /* Only use essential dark mode properties to save memory and reduce complexity */
+
+  --hover-level-1: 240 5.3% 26.1%;
+  --hover-level-2: 240 3.7% 15.9%;
+}
+
+/* Core Editor Styles - reduced specificity and simplified selectors */
+body {
+  caret-color: var(--editor-text-default);
+  outline: none;
+  padding: 40px 96px;
+  margin-block: 0;
+  margin-left: 0;
+  /* margin-right: auto; */
+  max-width: 100ch;
+  font-family: var(--editor-font-manrope);
+  position: relative;
+  color: var(--editor-text-default);
+  background-color: var(--editor-bg-default);
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Eliminated unnecessary transitions */
+}
+
+body:focus {
+  outline: none;
+}
+
+body > .react-renderer {
+  margin: var(--editor-spacing-12) 0;
+  /*transition: all var(--editor-transition-normal);*/
+}
+
+body > .react-renderer:first-child {
+  margin-top: 0;
+}
+
+body > .react-renderer:last-child {
+  margin-bottom: 0;
+}
+
+/* Typography Styles - consolidated selectors */
+ p {
+  line-height: 1.75;
+  margin-block: 2px !important;
+  color: var(--editor-text-default);
+  font-size: 1.125rem;
+}
+
+/* Consolidated heading styles to reduce rule count */
+ h1,
+ h2,
+ h3,
+ h4 {
+  font-family: var(--editor-font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--editor-text-default);
+  scroll-margin-top: var(--editor-spacing-16);
+  line-height: 1.2;
+}
+
+ h1 {
+  font-size: 2.5rem;
+  margin: var(--editor-spacing-8) 0 var(--editor-spacing-4);
+}
+ h2 {
+  font-size: 2rem;
+  margin: var(--editor-spacing-8) 0 var(--editor-spacing-4);
+}
+ h3 {
+  font-size: 1.5rem;
+  margin: var(--editor-spacing-6) 0 var(--editor-spacing-3);
+}
+ h4 {
+  font-size: 1.25rem;
+  margin: var(--editor-spacing-4) 0 var(--editor-spacing-2);
+}
+
+ a {
+  color: var(--editor-text-blue);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+  /* Use hardware-accelerated properties for transitions */
+  transition: text-decoration-thickness var(--editor-transition-fast);
+}
+
+ a:hover {
+  text-decoration-thickness: 0.2em;
+}
+
+ code {
+  font-family: var(--editor-font-mono);
+  font-size: 0.9em;
+  background-color: var(--editor-bg-muted);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--editor-text-default);
+  border: 1px solid var(--editor-border-default);
+}
+
+ pre {
+  margin: 2px 0;
+  padding: var(--editor-spacing-4);
+  background-color: var(--editor-bg-subtle);
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--editor-border-default);
+}
+
+ pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--editor-text-default);
+}
+
+ blockquote {
+  margin: 2px 0;
+  padding: var(--editor-spacing-4) var(--editor-spacing-6);
+  border-left: 4px solid var(--editor-border-strong);
+  font-style: italic;
+  color: var(--editor-text-gray);
+  background-color: var(--editor-bg-subtle);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Lists - simplified selectors */
+ ul,
+ ol {
+  margin: 2px 0;
+  padding-left: var(--editor-spacing-6);
+}
+
+ li {
+  margin: 1px 0;
+  padding-left: var(--editor-spacing-2);
+}
+
+ ul {
+  list-style-type: disc;
+}
+ ul ul {
+  list-style-type: circle;
+}
+ ul ul ul {
+  list-style-type: square;
+}
+ ol {
+  list-style-type: decimal;
+}
+ ol ol {
+  list-style-type: lower-alpha;
+}
+ ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* Tables - optimized selectors */
+ table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: var(--editor-spacing-6) 0;
+  border: 1px solid var(--editor-border-default);
+  border-radius: 8px;
+  /* overflow: hidden; */
+  table-layout: fixed; /* Add this for better performance */
+}
+
+ th {
+  background-color: var(--editor-bg-subtle);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--editor-spacing-3) var(--editor-spacing-4);
+  border-bottom: 2px solid var(--editor-border-default);
+}
+
+ td {
+  padding: var(--editor-spacing-3) var(--editor-spacing-4);
+  border-bottom: 1px solid var(--editor-border-default);
+  /* Removed transition for better performance */
+}
+
+ tr:last-child td {
+  border-bottom: none;
+}
+
+/* Simplified rule */
+ tr:hover td {
+  background-color: var(--editor-bg-subtle);
+}
+
+/* Images - limit animations */
+ img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--editor-border-default);
+  box-shadow: var(--editor-shadow-sm);
+  display: block;
+  margin: var(--editor-spacing-1) auto;
+  /* Use transform for hardware acceleration */
+  will-change: transform;
+  transition: transform var(--editor-transition-normal);
+}
+
+ img:hover {
+  transform: translateY(
+    -2px
+  ); /* Only animate transform for better performance */
+}
+
+/* Horizontal Rule */
+ hr {
+  margin: var(--editor-spacing-8) 0;
+  border: none;
+  border-top: 2px solid var(--editor-border-default);
+}
+
+/* Floating Menu & Toolbar - simplify */
+.floating-menu {
+  background-color: var(--editor-bg-default);
+  border: 1px solid var(--editor-border-default);
+  box-shadow: var(--editor-shadow-lg);
+  border-radius: 8px;
+  padding: var(--editor-spacing-1);
+  display: flex;
+  gap: var(--editor-spacing-1);
+  align-items: center;
+  /* Use transform for animation for better performance */
+  animation: fadeIn var(--editor-transition-normal);
+  backdrop-filter: blur(8px);
+  /* Add will-change for hardware acceleration */
+  will-change: opacity, transform;
+}
+
+/* Consolidated toolbar button styles */
+.toolbar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: 2.25rem;
+  padding: 0 var(--editor-spacing-3);
+  background-color: transparent;
+  color: var(--editor-text-default);
+  border: 1px solid transparent;
+  /* Limit transition properties for better performance */
+  transition: background-color var(--editor-transition-fast);
+}
+
+.toolbar-button:hover {
+  background-color: var(--editor-bg-subtle);
+}
+
+.toolbar-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--editor-border-strong);
+}
+
+.toolbar-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbar-button.active {
+  background-color: var(--editor-bg-muted);
+  color: var(--editor-text-blue);
+}
+
+/* Mobile Optimizations - more efficient media query */
+@media (max-width: 640px) {
+   {
+    padding: var(--editor-spacing-8) var(--editor-spacing-4);
+  }
+
+  /* Consolidated font size adjustments */
+   h1 {
+    font-size: 2rem;
+  }
+   h2 {
+    font-size: 1.75rem;
+  }
+   h3 {
+    font-size: 1.5rem;
+  }
+   h4 {
+    font-size: 1.25rem;
+  }
+   p {
+    font-size: 1rem;
+  }
+}
+
+/* Optimized animations - use hardware-accelerated properties */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Print Styles */
+@media print {
+   {
+    padding: 0;
+    max-width: none;
+  }
+
+  .floating-menu,
+  .toolbar-button {
+    display: none;
+  }
+}
+
+.is-editor-empty::before {
+  color: var(--editor-text-gray);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Table Styles - optimized and simplified */
+ table {
+  border-collapse: collapse;
+  table-layout: fixed; /* Improves rendering performance */
+  width: 100%;
+  margin: var(--editor-spacing-6) 0;
+  /* overflow: hidden; */
+}
+
+/* Combine selectors for less CSS rules */
+ table td,
+ table th {
+  position: relative;
+  min-width: 1em;
+  border: 1px solid var(--editor-border-default);
+  padding: var(--editor-spacing-3) var(--editor-spacing-4);
+  vertical-align: top;
+}
+
+ table th {
+  font-weight: bold;
+  text-align: left;
+  background-color: var(--editor-bg-subtle);
+}
+
+ table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(200, 200, 255, 0.4);
+  pointer-events: none;
+}
+
+/* Optimized column resize handle */
+ table .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  pointer-events: none;
+  opacity: 0;
+  /* Use opacity only for transition for better performance */
+  transition: opacity var(--editor-transition-normal);
+  will-change: opacity;
+}
+
+ table .column-resize-handle.active,
+ table:hover .column-resize-handle {
+  opacity: 1;
+}
+
+.tableWrapper {
+  padding: 1rem 0;
+  /* overflow-x: auto; */
+}
+
+.resize-cursor {
+  cursor: col-resize;
+}
+
+/* Simplified dark mode styles */
+.dark  table th {
+  background-color: var(--editor-bg-muted);
+}
+
+.dark  table .selectedCell:after {
+  background: rgba(100, 100, 155, 0.4);
+}
+
+.highlighted {
+  background-color: var(--editor-highlight-orange);
+  color: var(--editor-text-default);
+}
+
+.highlighted-selected {
+  background-color: var(--editor-highlight-yellow);
+  color: var(--editor-text-default);
+}
+
+/* Citation Styles */
+
+.bibliography-entry {
+  margin-block: 10px !important;
+}
+
+.bibliography-section {
+  margin-top: 20px;
+}
+
+.citation {
+  display: inline-block;
+  position: relative;
+  padding: 0.2em;
+  border-radius: 4px;
+}
+.citation:hover {
+  background-color: var(--editor-bg-subtle);
+}

@@ -115,6 +115,9 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   /* Eliminated unnecessary transitions */
 }
 
@@ -136,7 +139,7 @@ body > .react-renderer:last-child {
 }
 
 /* Typography Styles - consolidated selectors */
- p {
+p {
   line-height: 1.75;
   margin-block: 2px !important;
   color: var(--editor-text-default);
@@ -144,10 +147,10 @@ body > .react-renderer:last-child {
 }
 
 /* Consolidated heading styles to reduce rule count */
- h1,
- h2,
- h3,
- h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--editor-font-sans);
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -156,24 +159,24 @@ body > .react-renderer:last-child {
   line-height: 1.2;
 }
 
- h1 {
+h1 {
   font-size: 2.5rem;
   margin: var(--editor-spacing-8) 0 var(--editor-spacing-4);
 }
- h2 {
+h2 {
   font-size: 2rem;
   margin: var(--editor-spacing-8) 0 var(--editor-spacing-4);
 }
- h3 {
+h3 {
   font-size: 1.5rem;
   margin: var(--editor-spacing-6) 0 var(--editor-spacing-3);
 }
- h4 {
+h4 {
   font-size: 1.25rem;
   margin: var(--editor-spacing-4) 0 var(--editor-spacing-2);
 }
 
- a {
+a {
   color: var(--editor-text-blue);
   cursor: pointer;
   text-decoration: underline;
@@ -183,11 +186,11 @@ body > .react-renderer:last-child {
   transition: text-decoration-thickness var(--editor-transition-fast);
 }
 
- a:hover {
+a:hover {
   text-decoration-thickness: 0.2em;
 }
 
- code {
+code {
   font-family: var(--editor-font-mono);
   font-size: 0.9em;
   background-color: var(--editor-bg-muted);
@@ -197,7 +200,7 @@ body > .react-renderer:last-child {
   border: 1px solid var(--editor-border-default);
 }
 
- pre {
+pre {
   margin: 2px 0;
   padding: var(--editor-spacing-4);
   background-color: var(--editor-bg-subtle);
@@ -206,7 +209,7 @@ body > .react-renderer:last-child {
   border: 1px solid var(--editor-border-default);
 }
 
- pre code {
+pre code {
   background-color: transparent;
   padding: 0;
   border: none;
@@ -215,7 +218,7 @@ body > .react-renderer:last-child {
   color: var(--editor-text-default);
 }
 
- blockquote {
+blockquote {
   margin: 2px 0;
   padding: var(--editor-spacing-4) var(--editor-spacing-6);
   border-left: 4px solid var(--editor-border-strong);
@@ -226,38 +229,38 @@ body > .react-renderer:last-child {
 }
 
 /* Lists - simplified selectors */
- ul,
- ol {
+ul,
+ol {
   margin: 2px 0;
   padding-left: var(--editor-spacing-6);
 }
 
- li {
+li {
   margin: 1px 0;
   padding-left: var(--editor-spacing-2);
 }
 
- ul {
+ul {
   list-style-type: disc;
 }
- ul ul {
+ul ul {
   list-style-type: circle;
 }
- ul ul ul {
+ul ul ul {
   list-style-type: square;
 }
- ol {
+ol {
   list-style-type: decimal;
 }
- ol ol {
+ol ol {
   list-style-type: lower-alpha;
 }
- ol ol ol {
+ol ol ol {
   list-style-type: lower-roman;
 }
 
 /* Tables - optimized selectors */
- table {
+table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
@@ -268,7 +271,7 @@ body > .react-renderer:last-child {
   table-layout: fixed; /* Add this for better performance */
 }
 
- th {
+th {
   background-color: var(--editor-bg-subtle);
   font-weight: 600;
   text-align: left;
@@ -276,23 +279,23 @@ body > .react-renderer:last-child {
   border-bottom: 2px solid var(--editor-border-default);
 }
 
- td {
+td {
   padding: var(--editor-spacing-3) var(--editor-spacing-4);
   border-bottom: 1px solid var(--editor-border-default);
   /* Removed transition for better performance */
 }
 
- tr:last-child td {
+tr:last-child td {
   border-bottom: none;
 }
 
 /* Simplified rule */
- tr:hover td {
+tr:hover td {
   background-color: var(--editor-bg-subtle);
 }
 
 /* Images - limit animations */
- img {
+img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
@@ -305,14 +308,14 @@ body > .react-renderer:last-child {
   transition: transform var(--editor-transition-normal);
 }
 
- img:hover {
+img:hover {
   transform: translateY(
     -2px
   ); /* Only animate transform for better performance */
 }
 
 /* Horizontal Rule */
- hr {
+hr {
   margin: var(--editor-spacing-8) 0;
   border: none;
   border-top: 2px solid var(--editor-border-default);
@@ -373,24 +376,24 @@ body > .react-renderer:last-child {
 
 /* Mobile Optimizations - more efficient media query */
 @media (max-width: 640px) {
-   {
+  body {
     padding: var(--editor-spacing-8) var(--editor-spacing-4);
   }
 
   /* Consolidated font size adjustments */
-   h1 {
+  h1 {
     font-size: 2rem;
   }
-   h2 {
+  h2 {
     font-size: 1.75rem;
   }
-   h3 {
+  h3 {
     font-size: 1.5rem;
   }
-   h4 {
+  h4 {
     font-size: 1.25rem;
   }
-   p {
+  p {
     font-size: 1rem;
   }
 }
@@ -409,7 +412,7 @@ body > .react-renderer:last-child {
 
 /* Print Styles */
 @media print {
-   {
+  body {
     padding: 0;
     max-width: none;
   }
@@ -429,7 +432,7 @@ body > .react-renderer:last-child {
 }
 
 /* Table Styles - optimized and simplified */
- table {
+table {
   border-collapse: collapse;
   table-layout: fixed; /* Improves rendering performance */
   width: 100%;
@@ -438,8 +441,8 @@ body > .react-renderer:last-child {
 }
 
 /* Combine selectors for less CSS rules */
- table td,
- table th {
+table td,
+table th {
   position: relative;
   min-width: 1em;
   border: 1px solid var(--editor-border-default);
@@ -447,13 +450,13 @@ body > .react-renderer:last-child {
   vertical-align: top;
 }
 
- table th {
+table th {
   font-weight: bold;
   text-align: left;
   background-color: var(--editor-bg-subtle);
 }
 
- table .selectedCell:after {
+table .selectedCell:after {
   z-index: 2;
   position: absolute;
   content: "";
@@ -466,7 +469,7 @@ body > .react-renderer:last-child {
 }
 
 /* Optimized column resize handle */
- table .column-resize-handle {
+table .column-resize-handle {
   position: absolute;
   right: -2px;
   top: 0;
@@ -479,8 +482,8 @@ body > .react-renderer:last-child {
   will-change: opacity;
 }
 
- table .column-resize-handle.active,
- table:hover .column-resize-handle {
+table .column-resize-handle.active,
+table:hover .column-resize-handle {
   opacity: 1;
 }
 
@@ -494,11 +497,11 @@ body > .react-renderer:last-child {
 }
 
 /* Simplified dark mode styles */
-.dark  table th {
+.dark table th {
   background-color: var(--editor-bg-muted);
 }
 
-.dark  table .selectedCell:after {
+.dark table .selectedCell:after {
   background: rgba(100, 100, 155, 0.4);
 }
 

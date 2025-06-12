@@ -119,7 +119,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 }
 
 body:focus {
